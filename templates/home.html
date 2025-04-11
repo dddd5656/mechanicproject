@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Hero Section -->
+<section id="home" class="hero">
+    <div class="hero-content">
+        <h1>Expert Auto Repair & Maintenance</h1>
+        <p>
+            At Mechanic, we combine top-notch mechanical expertise with exceptional customer service.
+            Your vehicle deserves the best care possible.
+        </p>
+        <a href="{% url 'appointment' %}" class="btn btn-primary">Book an Appointment</a>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section id="services" class="section">
+    <div class="container">
+        <div class="section-title">
+            <h2>Our Services</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-img" style="background-image: url('{% static 'images/diagnostic.jpg' %}');"></div>
+                <div class="service-content">
+                    <h3>Engine Diagnostics & Repair</h3>
+                    <p>
+                        Our certified technicians use state-of-the-art diagnostic equipment to identify and resolve
+                        engine issues quickly and efficiently.
+                    </p>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-img" style="background-image: url('{% static 'images/brake.webp' %}');"></div>
+                <div class="service-content">
+                    <h3>Brake System Service</h3>
+                    <p>
+                        From brake pad replacement to complete system overhauls, we ensure your vehicle stops safely every time.
+                    </p>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-img" style="background-image: url('{% static 'images/routine.jpg' %}');"></div>
+                <div class="service-content">
+                    <h3>Routine Maintenance</h3>
+                    <p>
+                        Regular oil changes, fluid checks, and preventative maintenance to keep your vehicle running
+                        smoothly for years to come.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section id="testimonials" class="section">
+    <div class="container">
+        <div class="section-title">
+            <h2>What Our Customers Say</h2>
+        </div>
+        <div class="testimonials-slider">
+            <div class="testimonials" id="testimonials-container">
+                <div class="testimonial">
+                    <p class="testimonial-text">
+                        "The team at Mechanic is simply amazing! They fixed my car promptly and explained everything clearly.
+                        Best mechanic I've ever been to."
+                    </p>
+                    <p class="testimonial-author">- Baiysh Kubatov</p>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">
+                        "Honest pricing, exceptional service, and skilled technicians. I won't take my car anywhere else now."
+                    </p>
+                    <p class="testimonial-author">- Ulanbekov Bakai</p>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">
+                        "They diagnosed an issue that two other shops missed. Saved me thousands in unnecessary repairs.
+                        Truly knowledgeable professionals."
+                    </p>
+                    <p class="testimonial-author">- Eshimbekov Baijhigit</p>
+                </div>
+            </div>
+            <div class="slider-dots" id="slider-dots">
+                <span class="dot active" data-index="0"></span>
+                <span class="dot" data-index="1"></span>
+                <span class="dot" data-index="2"></span>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

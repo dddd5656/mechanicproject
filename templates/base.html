@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Mechanic Auto Repair{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <div class="logo">Mecha<span>nic</span></div>
+                <button class="mobile-nav-toggle">☰</button>
+                <nav>
+                    <ul id="navbar">
+                        <li><a href="{% url 'home' %}">Home</a></li>
+                        <li><a href="{% url 'services' %}">Services</a></li>
+                        <li><a href="{% url 'appointment' %}">Appointment</a></li>
+                        <li><a href="{% url 'testimonials' %}">Testimonials</a></li>
+                        <li><a href="{% url 'contact' %}">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    {% block content %}
+    {% endblock %}
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>MechaChic Auto Repair</h3>
+                    <p>Providing quality auto repair services since 2023. We pride ourselves on honest work and exceptional customer service.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li>Chuy Street, Automechanic, KGZ</li>
+                        <li>Phone: (+996) 703 34 04 49</li>
+                        <li>Email: damil03@gmail.com</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Hours</h3>
+                    <ul>
+                        <li>Mon-Fri: 8:00 AM - 6:00 PM</li>
+                        <li>Saturday: 9:00 AM - 4:00 PM</li>
+                        <li>Sunday: Closed</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="{% url 'services' %}">Services</a></li>
+                        <li><a href="{% url 'appointment' %}">Book Appointment</a></li>
+                        <li><a href="{% url 'testimonials' %}">Testimonials</a></li>
+                        <li><a href="#">Career Opportunities</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 MechaChic Auto Repair. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html> 

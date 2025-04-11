@@ -1,0 +1,220 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact Us - Mechanic Auto Repair{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <div class="section-title">
+            <h2>Contact Us</h2>
+            <p>We're here to help with all your auto repair needs. Reach out to us using any of the methods below.</p>
+        </div>
+        
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-card">
+                    <h3>Location</h3>
+                    <p><strong>Address:</strong> Chuy Street, Automechanic, KGZ</p>
+                    <p><strong>Landmark:</strong> Near the Central Market</p>
+                    <div class="map-container">
+                        <!-- Replace with actual map embed code -->
+                        <div class="map-placeholder">
+                            <p>Map will be displayed here</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-card">
+                    <h3>Contact Information</h3>
+                    <p><strong>Phone:</strong> <a href="tel:+996703340449">(+996) 703 34 04 49</a></p>
+                    <p><strong>Email:</strong> <a href="mailto:damil03@gmail.com">damil03@gmail.com</a></p>
+                    <p><strong>Hours:</strong></p>
+                    <ul class="hours-list">
+                        <li>Monday - Friday: 8:00 AM - 6:00 PM</li>
+                        <li>Saturday: 9:00 AM - 4:00 PM</li>
+                        <li>Sunday: Closed</li>
+                    </ul>
+                </div>
+                
+                <div class="contact-card">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link">Facebook</a>
+                        <a href="#" class="social-link">Instagram</a>
+                        <a href="#" class="social-link">Twitter</a>
+                        <a href="#" class="social-link">YouTube</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-form-container">
+                <h3>Send Us a Message</h3>
+                
+                {% if messages %}
+                <div class="messages">
+                    {% for message in messages %}
+                    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                
+                {% if contact_success %}
+                <div class="contact-success">
+                    <div class="success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Your message has been sent!</h3>
+                    <p>Thank you for your message. We have received it and will contact you soon.</p>
+                    <div class="success-actions">
+                        <a href="{% url 'home' %}" class="btn btn-primary">Return to Home</a>
+                        <a href="{% url 'contact' %}" class="btn btn-success">Send Another Message</a>
+                    </div>
+                </div>
+                {% else %}
+                <form method="post" action="{% url 'submit_contact' %}" class="contact-form" id="contact-form">
+                    {% csrf_token %}
+                    
+                    {% if form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        {% for error in form.non_field_errors %}
+                        {{ error }}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    
+                    <div class="form-group">
+                        <label for="{{ form.name.id_for_label }}">Your Name</label>
+                        {{ form.name }}
+                        {% if form.name.errors %}
+                        <div class="text-danger">
+                            {% for error in form.name.errors %}
+                            {{ error }}
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="{{ form.email.id_for_label }}">Email Address</label>
+                        {{ form.email }}
+                        {% if form.email.errors %}
+                        <div class="text-danger">
+                            {% for error in form.email.errors %}
+                            {{ error }}
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="{{ form.subject.id_for_label }}">Subject</label>
+                        {{ form.subject }}
+                        {% if form.subject.errors %}
+                        <div class="text-danger">
+                            {% for error in form.subject.errors %}
+                            {{ error }}
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="{{ form.message.id_for_label }}">Message</label>
+                        {{ form.message }}
+                        {% if form.message.errors %}
+                        <div class="text-danger">
+                            {% for error in form.message.errors %}
+                            {{ error }}
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-block" id="send-message-btn">Send Message</button>
+                </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" style="background-color: #f8f9fa;">
+    <div class="container">
+        <div class="section-title">
+            <h2>Frequently Asked Questions</h2>
+        </div>
+        <div class="faq-container">
+            <div class="faq-item">
+                <h3>What types of vehicles do you service?</h3>
+                <p>We service all makes and models of cars, trucks, and SUVs. Our technicians are trained to work on both domestic and foreign vehicles.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Do you offer warranties on your services?</h3>
+                <p>Yes, we offer warranties on all our services and parts. Our standard warranty covers parts and labor for 12 months or 12,000 miles, whichever comes first.</p>
+            </div>
+            <div class="faq-item">
+                <h3>How long does a typical repair take?</h3>
+                <p>Repair times vary depending on the service needed. Simple maintenance like oil changes typically take 30-60 minutes, while more complex repairs may take several hours or days.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Do I need to make an appointment?</h3>
+                <p>While walk-ins are welcome for simple services, we recommend scheduling an appointment to ensure we can accommodate you at your preferred time.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .contact-success {
+        text-align: center;
+        padding: 30px;
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .success-icon {
+        font-size: 60px;
+        color: #28a745;
+        margin-bottom: 20px;
+    }
+    
+    .contact-success h3 {
+        margin-bottom: 15px;
+        color: #333;
+    }
+    
+    .contact-success p {
+        margin-bottom: 10px;
+        color: #666;
+    }
+    
+    .success-actions {
+        margin-top: 25px;
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
+    
+    .success-actions .btn {
+        min-width: 150px;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('contact-form');
+        const submitButton = document.getElementById('send-message-btn');
+        
+        if (form && submitButton) {
+            form.addEventListener('submit', function(e) {
+                // Don't prevent default - let the form submit normally
+                submitButton.disabled = true;
+                submitButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Processing...';
+            });
+        }
+    });
+</script>
+{% endblock %} 

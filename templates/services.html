@@ -1,0 +1,224 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Our Services - Mechanic Auto Repair{% endblock %}
+
+{% block content %}
+<!-- Services Section -->
+<section class="section">
+    <div class="container">
+        <div class="section-title">
+            <h2>Our Services</h2>
+            <p>
+                We offer a comprehensive range of auto repair and maintenance services to keep your vehicle running smoothly.
+            </p>
+        </div>
+
+        <div class="services-grid">
+            <!-- Engine Service -->
+            <div class="service-card">
+                <div class="service-img" style="background-image: url('{% static 'images/diagnostic.jpg' %}');"></div>
+                <div class="service-content">
+                    <h3>Engine Diagnostics & Repair</h3>
+                    <p>State-of-the-art diagnostics and expert repairs to keep your engine in top condition.</p>
+                    <ul class="service-details">
+                        <li>Computer diagnostics</li>
+                        <li>Engine tune-ups</li>
+                        <li>Performance optimization</li>
+                        <li>Engine rebuilds</li>
+                    </ul>
+                    <a href="{% url 'appointment' %}" class="btn btn-primary">Book Now</a>
+                </div>
+            </div>
+
+            <!-- Brake Service -->
+            <div class="service-card">
+                <div class="service-img" style="background-image: url('{% static 'images/brake.webp' %}');"></div>
+                <div class="service-content">
+                    <h3>Brake System Service</h3>
+                    <p>Ensure your safety with complete brake system inspection and repair.</p>
+                    <ul class="service-details">
+                        <li>Brake pad replacement</li>
+                        <li>Rotor resurfacing</li>
+                        <li>Caliper repair</li>
+                        <li>ABS diagnostics</li>
+                    </ul>
+                    <a href="{% url 'appointment' %}" class="btn btn-primary">Book Now</a>
+                </div>
+            </div>
+
+            <!-- Maintenance Service -->
+            <div class="service-card">
+                <div class="service-img" style="background-image: url('{% static 'images/routine.jpg' %}');"></div>
+                <div class="service-content">
+                    <h3>Routine Maintenance</h3>
+                    <p>Preventative care to extend the life and performance of your vehicle.</p>
+                    <ul class="service-details">
+                        <li>Oil changes</li>
+                        <li>Fluid checks</li>
+                        <li>Filter replacements</li>
+                        <li>Tire rotation</li>
+                    </ul>
+                    <a href="{% url 'appointment' %}" class="btn btn-primary">Book Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Service Request Form Section -->
+<section class="section" style="background-color: #f8f9fa;">
+    <div class="container">
+        <div class="section-title">
+            <h2>Request a Service</h2>
+            <p>Fill out the form below to request a specific service for your vehicle.</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                {% if messages %}
+                <div class="messages">
+                    {% for message in messages %}
+                    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                
+                <div class="card">
+                    <div class="card-body">
+                        <form method="post" action="{% url 'service_request' %}">
+                            {% csrf_token %}
+                            
+                            {% if form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                {% for error in form.non_field_errors %}
+                                {{ error }}
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                            
+                            <div class="form-group">
+                                <label for="{{ form.name.id_for_label }}">Your Name</label>
+                                {{ form.name }}
+                                {% if form.name.errors %}
+                                <div class="text-danger">
+                                    {% for error in form.name.errors %}
+                                    {{ error }}
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="{{ form.email.id_for_label }}">Email Address</label>
+                                {{ form.email }}
+                                {% if form.email.errors %}
+                                <div class="text-danger">
+                                    {% for error in form.email.errors %}
+                                    {{ error }}
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="{{ form.phone.id_for_label }}">Phone Number</label>
+                                {{ form.phone }}
+                                {% if form.phone.errors %}
+                                <div class="text-danger">
+                                    {% for error in form.phone.errors %}
+                                    {{ error }}
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="{{ form.vehicle_type.id_for_label }}">Vehicle Type</label>
+                                {{ form.vehicle_type }}
+                                {% if form.vehicle_type.errors %}
+                                <div class="text-danger">
+                                    {% for error in form.vehicle_type.errors %}
+                                    {{ error }}
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="{{ form.vehicle_make.id_for_label }}">Vehicle Make</label>
+                                        {{ form.vehicle_make }}
+                                        {% if form.vehicle_make.errors %}
+                                        <div class="text-danger">
+                                            {% for error in form.vehicle_make.errors %}
+                                            {{ error }}
+                                            {% endfor %}
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="{{ form.vehicle_model.id_for_label }}">Vehicle Model</label>
+                                        {{ form.vehicle_model }}
+                                        {% if form.vehicle_model.errors %}
+                                        <div class="text-danger">
+                                            {% for error in form.vehicle_model.errors %}
+                                            {{ error }}
+                                            {% endfor %}
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="{{ form.vehicle_year.id_for_label }}">Vehicle Year</label>
+                                        {{ form.vehicle_year }}
+                                        {% if form.vehicle_year.errors %}
+                                        <div class="text-danger">
+                                            {% for error in form.vehicle_year.errors %}
+                                            {{ error }}
+                                            {% endfor %}
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="{{ form.service_description.id_for_label }}">Service Description</label>
+                                {{ form.service_description }}
+                                {% if form.service_description.errors %}
+                                <div class="text-danger">
+                                    {% for error in form.service_description.errors %}
+                                    {{ error }}
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="{{ form.preferred_date.id_for_label }}">Preferred Date</label>
+                                {{ form.preferred_date }}
+                                {% if form.preferred_date.errors %}
+                                <div class="text-danger">
+                                    {% for error in form.preferred_date.errors %}
+                                    {{ error }}
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary btn-block">Submit Service Request</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
